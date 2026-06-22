@@ -1,0 +1,24 @@
+# Local-only superpowers spec/plan workspace — never commit these
+docs/superpowers/
+
+# Local-only git worktrees (created in-repo for subagent isolation)
+.worktrees/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# --- Add your language's ignores below (examples) ---
+# Python
+# __pycache__/
+# *.py[cod]
+# .pytest_cache/
+# .venv/
+# Node
+# node_modules/
+# dist/
