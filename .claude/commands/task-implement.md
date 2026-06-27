@@ -20,7 +20,9 @@ Requested issues (may be empty): **$ARGUMENTS**
 - Project **`<PROJECT-CODE>`** (`project_id` `<PROJECT_ID>`, if your MCP server
   needs one).
 - Resolve states **by name at runtime** via `<tracker_mcp>__list_states`:
-  **"Todo"**, **"In Progress"**, **"In Review"**, **"Done"**.
+  **"Todo"**, **"In Progress"**, **"In Review"**, **"Done"**. If your tracker
+  lacks one (e.g. Plane has no **"In Review"**), create it once before running
+  this command.
 
 ## Steps
 

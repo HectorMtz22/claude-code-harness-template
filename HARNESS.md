@@ -63,6 +63,12 @@ implementation agent works against.
 
 ## 3. Issue(s) — the tracker
 
+> **Tracker setup (one-time):** the loop uses four states — `Todo`,
+> `In Progress`, `In Review`, `Done`. Some trackers don't ship all of them
+> (e.g. Plane has no `In Review`); create any that are missing once — put
+> `In Review` in the "started" group, ordered just before `Done` — so
+> `/task-implement` can move an issue there when its PR opens.
+
 `/task-init` files the work in **`<TRACKER>`**, project **`<PROJECT-CODE>`**. One
 issue ≈ one PR-sized chunk. Each issue gets:
 

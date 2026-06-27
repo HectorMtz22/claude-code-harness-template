@@ -51,7 +51,8 @@ Issues live in **`<TRACKER>`**, not in local files. Project `<PROJECT-CODE>`.
 `/task-init` files them; `/task-implement` reads and advances them.
 
 - **States:** `Todo` → `In Progress` → `In Review` (PR open) → `Done` (merged)
-  (resolve ids at runtime).
+  (resolve ids at runtime; create any your tracker lacks — e.g. Plane ships
+  without `In Review`).
 - **Labels:** one **project** label plus one **type** label (`feat`, `fix`,
   `refactor`, `test`, `docs`, `chore`) per issue.
 - One issue ≈ one PR-sized chunk; independent issues enable parallel agents.
