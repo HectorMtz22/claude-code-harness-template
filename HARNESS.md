@@ -33,6 +33,18 @@ the code, the tracked issue, and the PR.
 
 ---
 
+## Set up the tracker (once per repo)
+
+Before the loop, configure and provision the tracker:
+
+1. **`/harness-setup`** — choose the tracker (default Plane); writes
+   `.claude/tracker.md`.
+2. **`/harness-bootstrap`** — create the project (if missing), the
+   `Todo → In Progress → In Review → Done` states, the type labels, and the
+   weekly (Mon→Sun) cycles. Idempotent — re-run to top up future cycles.
+
+---
+
 ## 0. Decide the size
 
 - **Trivial** (one-line fix, typo, obvious tweak): skip straight to TDD on a
@@ -64,11 +76,13 @@ implementation agent works against.
 
 ## 3. Issue(s) — the tracker
 
-> **Tracker setup (one-time):** the loop uses four states — `Todo`,
-> `In Progress`, `In Review`, `Done`. Some trackers don't ship all of them
-> (e.g. Plane has no `In Review`); create any that are missing once — put
-> `In Review` in the "started" group, ordered just before `Done` — so
-> `/task-implement` can move an issue there when its PR opens.
+> **Tracker setup (one-time):** `/harness-bootstrap` creates the four required
+> states — `Todo`, `In Progress`, `In Review`, `Done` — along with the type
+> labels and weekly cycles. Run it once before starting the loop (see "Set up
+> the tracker" above). If you're on a tracker without bootstrap support, create
+> any missing states by hand — put `In Review` in the "started" group, ordered
+> just before `Done` — so `/task-implement` can move an issue there when its PR
+> opens.
 
 `/task-init` files the work in the tracker, project `project_code`. One
 issue ≈ one PR-sized chunk. Each issue gets:
