@@ -77,10 +77,10 @@ two commands: **`/task-init`** (brainstorm → spec → file issues) and
   `requesting-code-review`). **Report findings, don't auto-fix.**
 - **Specs and plans are local-only** under `docs/superpowers/` (gitignored).
   **Never commit them.** The committed record is the code + PR.
-- **Issues live in `<TRACKER>`** — project `<PROJECT-CODE>`. Each issue gets a
-  project label and a type label (`feat`/`fix`/`refactor`/`test`/`docs`/`chore`);
-  states go `Todo → In Progress → In Review (PR open) → Done (merged)`. Not in
-  local files.
+- **Issues live in the tracker** (configured in `.claude/tracker.md` — run `/harness-setup` to create it) — project
+  `project_code`. Each issue gets a project label and a type label
+  (`feat`/`fix`/`refactor`/`test`/`docs`/`chore`); states go
+  `Todo → In Progress → In Review (PR open) → Done (merged)`. Not in local files.
 - **Always use worktrees** under `.worktrees/` (gitignored) for implementation;
   never work in the main checkout. Multiple issues run as parallel agents, one
   worktree each.

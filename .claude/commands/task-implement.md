@@ -1,11 +1,11 @@
 ---
 description: Implement tracker issue(s) in worktrees with parallel agents, TDD, review, and PR
-argument-hint: [<PROJECT-CODE>-12 <PROJECT-CODE>-13 …] (optional; lists Todo issues if omitted)
+argument-hint: [project_code-12 project_code-13 …] (optional; lists Todo issues if omitted)
 ---
 
 # /task-implement — implement issue(s)
 
-Take one or more **`<TRACKER>`** issues and drive them through the back half of
+Take one or more issues from the configured tracker and drive them through the back half of
 the harness (see `HARNESS.md`): `worktree → TDD → verify → review → PR`. Always
 use worktrees, always use superpowers, always conventional commits. Multiple
 issues run as **parallel agents**, one worktree each.
@@ -14,12 +14,12 @@ Requested issues (may be empty): **$ARGUMENTS**
 
 ## Tracker coordinates
 
-<!-- Fill these in for your tracker. The example below uses Plane; swap the
-     <tracker_mcp> tool prefix and the project id for your setup. -->
+Read these from `.claude/tracker.md` (written by `/harness-setup`):
+`tracker`, `mcp_prefix`, `project_code`, `project_id`. If the file is missing,
+tell the user to run `/harness-setup` first.
 
-- Project **`<PROJECT-CODE>`** (`project_id` `<PROJECT_ID>`, if your MCP server
-  needs one).
-- Resolve states **by name at runtime** via `<tracker_mcp>__list_states`:
+- Project = `project_code` (pass `project_id` to MCP tools that need it).
+- Resolve states **by name at runtime** via `<mcp_prefix>__list_states`:
   **"Todo"**, **"In Progress"**, **"In Review"**, **"Done"**. If your tracker
   lacks one (e.g. Plane has no **"In Review"**), create it once before running
   this command.
