@@ -21,6 +21,7 @@ can drive a change end-to-end without improvising the process.
 | [`.claude/commands/task-init.md`](.claude/commands/task-init.md) | `/task-init` — brainstorm → local spec → file issue(s). |
 | [`.claude/commands/task-implement.md`](.claude/commands/task-implement.md) | `/task-implement` — worktree → TDD → verify → review → PR. |
 | [`.claude/commands/harness-setup.md`](.claude/commands/harness-setup.md) | `/harness-setup` — choose tracker, write `.claude/tracker.md` (offline). |
+| [`.claude/commands/harness-bootstrap.md`](.claude/commands/harness-bootstrap.md) | `/harness-bootstrap` — create project, states, labels, and weekly cycles in the live tracker (idempotent). |
 | [`.claude/tracker.md`](.claude/tracker.md) | Tracker config (single source of truth). Written by `/harness-setup`. |
 | [`.gitignore`](.gitignore) | Ignores the local-only spec workspace and agent worktrees. |
 
@@ -42,9 +43,10 @@ brainstorm ─▶ spec ─▶ issue(s) ─▶ worktree ─▶ TDD ─▶ verify 
 
 1. Click **Use this template** on GitHub (or copy these files into your repo).
 2. Run `/harness-setup` (choose tracker, default Plane) — writes `.claude/tracker.md`.
-3. Make sure Claude Code has the `superpowers` plugin and, optionally, an MCP
+3. Run `/harness-bootstrap` to create the project, states, labels, and 8 weekly cycles in your tracker.
+4. Make sure Claude Code has the `superpowers` plugin and, optionally, an MCP
    server for your issue tracker.
-4. Run `/task-init <idea>` to start a task, then `/task-implement <ISSUE-ID>`.
+5. Run `/task-init <idea>` to start a task, then `/task-implement <ISSUE-ID>`.
 
 ## Placeholders to fill in
 
