@@ -2,7 +2,8 @@
 
 This file captures how feature work is done in this repo by automated coding
 agents (Claude Code with the `superpowers` plugin and an MCP server for your
-issue tracker, **`<TRACKER>`**). It's a recipe, not a rule. **Always use
+issue tracker). It's a recipe, not a rule. Tracker coordinates live in
+`.claude/tracker.md` — run `/harness-setup` to create it. **Always use
 superpowers** — invoke the named skill at each stage. See [`HARNESS.md`](HARNESS.md)
 for the full TDD detail.
 
@@ -13,9 +14,9 @@ Two slash commands wrap the loop: **`/task-init`** (front half) and
 
 1. **`/task-init`** runs `superpowers:brainstorming` → a design at
    `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` (gitignored, local-only)
-   → files **issue(s)** in the `<PROJECT-CODE>` project (state `Todo`, project +
+   → files **issue(s)** in the configured project (`project_code`) (state `Todo`, project +
    type labels).
-2. **`/task-implement [<PROJECT-CODE>-…]`** picks up the issue(s) and, for each,
+2. **`/task-implement [project_code-…]`** picks up the issue(s) and, for each,
    moves it to `In Progress` and **creates a worktree** under `.worktrees/<topic>/`
    on a new branch (gitignored) via `superpowers:using-git-worktrees`.
 3. **Dispatch a subagent** to implement inside that worktree, following TDD.
@@ -45,9 +46,9 @@ git worktree add -b <type>/<scope>-<topic> .worktrees/<topic> <default-branch>
 
 `.worktrees/` is gitignored.
 
-## Issue tracking — `<TRACKER>`
+## Issue tracking
 
-Issues live in **`<TRACKER>`**, not in local files. Project `<PROJECT-CODE>`.
+Issues live in the tracker (configured in `.claude/tracker.md`), not in local files. Project `project_code`.
 `/task-init` files them; `/task-implement` reads and advances them.
 
 - **States:** `Todo` → `In Progress` → `In Review` (PR open) → `Done` (merged)

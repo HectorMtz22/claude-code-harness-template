@@ -1,9 +1,10 @@
 # Development Harness (TDD)
 
 The repeatable loop for shipping a change in this repo. It assumes Claude Code
-with the `superpowers` plugin and an issue tracker (`<TRACKER>`, reached via an
-MCP server). It complements [`AGENTS.md`](AGENTS.md) (the *why* of
-worktrees/specs) with the *how* of TDD and issue tracking.
+with the `superpowers` plugin and your tracker (configured in `.claude/tracker.md`,
+reached via an MCP server). It complements [`AGENTS.md`](AGENTS.md) (the *why* of
+worktrees/specs) with the *how* of TDD and issue tracking. Coordinates live in
+`.claude/tracker.md` — run `/harness-setup` to create it.
 
 Optimize for the **simplest approach that passes a test**, and **verify every
 step with real output** before moving on. **Always use superpowers** — invoke
@@ -22,10 +23,10 @@ brainstorm ─▶ spec ─▶ issue(s) ─▶ worktree ─▶ TDD ─▶ verify 
 Two slash commands drive the loop:
 
 - **`/task-init [description]`** — brainstorm → local spec → issue(s).
-- **`/task-implement [<PROJECT-CODE>-12 …]`** — worktree → TDD → verify → review
+- **`/task-implement [project_code-12 …]`** — worktree → TDD → verify → review
   → PR, with parallel agents when there are multiple issues.
 
-Issues live in **`<TRACKER>`** (project **`<PROJECT-CODE>`**). Specs and plans
+Issues live in the tracker (project `project_code`). Specs and plans
 stay *local* and *gitignored* under `docs/superpowers/`; worktrees live under
 `.worktrees/` (also gitignored). **Never commit either.** The durable record is
 the code, the tracked issue, and the PR.
@@ -69,7 +70,7 @@ implementation agent works against.
 > `In Review` in the "started" group, ordered just before `Done` — so
 > `/task-implement` can move an issue there when its PR opens.
 
-`/task-init` files the work in **`<TRACKER>`**, project **`<PROJECT-CODE>`**. One
+`/task-init` files the work in the tracker, project `project_code`. One
 issue ≈ one PR-sized chunk. Each issue gets:
 
 - **State `Todo`** (resolve state ids at runtime).
@@ -183,7 +184,7 @@ sequence them instead.
 
 ## Guardrails
 
-- **Issues in `<TRACKER>`; specs/plans local.** `docs/superpowers/` and
+- **Issues in the tracker; specs/plans local.** `docs/superpowers/` and
   `.worktrees/` are gitignored — never `git add` them.
 - **Always superpowers.** Use the named skill at each stage; don't improvise the
   workflow.

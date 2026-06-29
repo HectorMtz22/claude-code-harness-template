@@ -20,6 +20,8 @@ can drive a change end-to-end without improvising the process.
 | [`AGENTS.md`](AGENTS.md) | The *why* of worktrees, specs, and issue tracking. |
 | [`.claude/commands/task-init.md`](.claude/commands/task-init.md) | `/task-init` — brainstorm → local spec → file issue(s). |
 | [`.claude/commands/task-implement.md`](.claude/commands/task-implement.md) | `/task-implement` — worktree → TDD → verify → review → PR. |
+| [`.claude/commands/harness-setup.md`](.claude/commands/harness-setup.md) | `/harness-setup` — choose tracker, write `.claude/tracker.md` (offline). |
+| [`.claude/tracker.md`](.claude/tracker.md) | Tracker config (single source of truth). Written by `/harness-setup`. |
 | [`.gitignore`](.gitignore) | Ignores the local-only spec workspace and agent worktrees. |
 
 ## The loop
@@ -39,24 +41,22 @@ brainstorm ─▶ spec ─▶ issue(s) ─▶ worktree ─▶ TDD ─▶ verify 
 ## Use it
 
 1. Click **Use this template** on GitHub (or copy these files into your repo).
-2. Fill in the placeholders — see below.
+2. Run `/harness-setup` (choose tracker, default Plane) — writes `.claude/tracker.md`.
 3. Make sure Claude Code has the `superpowers` plugin and, optionally, an MCP
    server for your issue tracker.
 4. Run `/task-init <idea>` to start a task, then `/task-implement <ISSUE-ID>`.
 
 ## Placeholders to fill in
 
-Search the repo for these and replace them with your specifics:
+Search the repo for these remaining placeholders and replace them with your specifics (tracker coordinates are handled separately — see below):
 
 | Placeholder | Replace with | Appears in |
 |---|---|---|
 | `<project>` / `<project-a>` | Your sub-project directory name(s) | `CLAUDE.md`, `HARNESS.md`, `AGENTS.md`, commands |
 | `<test command>` | How you run that project's tests (e.g. `uv run pytest`) | `CLAUDE.md`, `HARNESS.md` |
 | `<run command>` | How you run the project | `CLAUDE.md` |
-| `<TRACKER>` | Your issue tracker name (Plane, Linear, GitHub Issues) | `HARNESS.md`, `AGENTS.md`, commands |
-| `<PROJECT-CODE>` | The tracker project's short identifier (e.g. `UTILS`) | `HARNESS.md`, `AGENTS.md`, commands |
-| `<PROJECT_ID>` | The tracker project's id, if your MCP server needs one | commands |
-| `<tracker_mcp>` | The MCP tool prefix for your tracker (e.g. `mcp__plane`) | commands |
+
+**Tracker coordinates** (formerly `<TRACKER>`, `<PROJECT-CODE>`, `<PROJECT_ID>`, `<tracker_mcp>`) are no longer edited by hand — run `/harness-setup` to choose your tracker and write `.claude/tracker.md`.
 
 If you only have one project (a single script or package), drop the per-project
 table and the parallel-agents section entirely — the harness works for a single

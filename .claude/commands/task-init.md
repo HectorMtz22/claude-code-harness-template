@@ -5,7 +5,7 @@ argument-hint: [short description of the task]
 
 # /task-init — start a new task
 
-Turn an idea into a local spec and one or more **`<TRACKER>`** issues, ready for
+Turn an idea into a local spec and one or more issues in the configured tracker, ready for
 `/task-implement`. This is the front half of the harness (see `HARNESS.md`):
 `brainstorm → spec → issue(s)`. Issues live in the tracker; specs/plans stay
 local and gitignored.
@@ -14,14 +14,14 @@ Task description (may be empty — ask if so): **$ARGUMENTS**
 
 ## Tracker coordinates
 
-<!-- Fill these in for your tracker. The example below uses Plane; swap the
-     <tracker_mcp> tool prefix and the project id for your setup. -->
+Read these from `.claude/tracker.md` (written by `/harness-setup`):
+`tracker`, `mcp_prefix`, `project_code`, `project_id`. If the file is missing,
+tell the user to run `/harness-setup` first.
 
-- Project **`<PROJECT-CODE>`** (`project_id` `<PROJECT_ID>`, if your MCP server
-  needs one).
+- Project = `project_code` (pass `project_id` to MCP tools that need it).
 - Resolve states and labels **by name at runtime** — don't hardcode UUIDs:
-  - `<tracker_mcp>__list_states` → pick the state named **"Todo"**.
-  - `<tracker_mcp>__list_labels` → map label names to IDs.
+  - `<mcp_prefix>__list_states` → pick the state named **"Todo"**.
+  - `<mcp_prefix>__list_labels` → map label names to IDs.
 
 ## Steps
 
@@ -44,7 +44,7 @@ Task description (may be empty — ask if so): **$ARGUMENTS**
      (`feat`, `fix`, `refactor`, `test`, `docs`, `chore`).
 
 4. **Create the issue(s):**
-   - `project`: the `<PROJECT-CODE>` project.
+   - `project`: the configured project (`project_code`).
    - `name`: imperative, conventional-commit-style summary, e.g.
      `feat(<project>): add page-range presets`.
    - `state`: the **Todo** state id.
@@ -53,8 +53,8 @@ Task description (may be empty — ask if so): **$ARGUMENTS**
      list, and the local spec filename (`docs/superpowers/specs/...`). Keep it
      tight — the spec is the contract.
 
-5. **Report** each created issue's identifier (e.g. `<PROJECT-CODE>-12`) and tell
-   the user they can run `/task-implement <PROJECT-CODE>-12 …` next.
+5. **Report** each created issue's identifier (e.g. `project_code-12`) and tell
+   the user they can run `/task-implement project_code-12 …` next.
 
 ## Guardrails
 
